@@ -34,11 +34,11 @@ class Tarifa:
             fi = fi + timedelta(hours = (diferencia))
             monto = horasDia*self.tarifaDia + horasNoche*self.tarifaNoche
             
-            if((fi.hour == 5 and fi.minute + minutos > 59) or
-               (fi.hour == 17 and fi.minute + minutos > 59)):
-                monto += self.tarifaDia if self.tarifaDia > self.tarifaNoche else self.tarifaNoche
-            elif(fi.minute + minutos > 0) :
-                monto += self.tarifaDia if self.tarifaDia < self.tarifaNoche else self.tarifaNoche
+        if((fi.hour == 5 and fi.minute + minutos > 59) or
+            (fi.hour == 17 and fi.minute + minutos > 59)):
+            monto += self.tarifaDia if self.tarifaDia > self.tarifaNoche else self.tarifaNoche
+        elif(fi.minute + minutos > 0) :
+             monto += self.tarifaDia if self.tarifaDia < self.tarifaNoche else self.tarifaNoche
         print(horasDia,"dia")
         print(horasNoche,"noche")
         return monto
@@ -47,9 +47,8 @@ class Tarifa:
 td = input("Introduzca la tarifa de dia: ")
 tn = input("Introduzca la tarifa de noche: ")                     
 tar = Tarifa(td,tn)
-y,m,d,h,min = [int(x) for x in raw_input("Introduzca la fecha de inicio con el formato YY MM DD HH m: ").split(' ')]
+y,m,d,h,min = [int(x) for x in raw_input("Introduzca la fecha de inicio con el formato: anio mes dia hora minuto ").split(' ')]
 fi = datetime(y,m,d,h,min)
-y,m,d,h,min =[ int(x) for x in raw_input("Introduzca la fecha de inicio con el formato YY MM DD HH m: ").split(' ')]
+y,m,d,h,min =[ int(x) for x in raw_input("Introduzca la fecha de fin con el formato: anio mes dia hora minuto: ").split(' ')]
 ff = datetime(y,m,d,h,min)
-print (tar.calcularMonto(fi, ff))
-print(fi.strftime("%A, %d. %B %Y %I:%M%p"))
+print "Monto a pagar: %d" % tar.calcularMonto(fi, ff)
