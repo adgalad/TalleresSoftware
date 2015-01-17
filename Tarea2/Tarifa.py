@@ -32,8 +32,8 @@ class Tarifa:
             
             totalHoras -= diferencia
             fi = fi + timedelta(hours = (diferencia))
-            monto = horasDia*self.tarifaDia + horasNoche*self.tarifaNoche
             
+        monto = horasDia*self.tarifaDia + horasNoche*self.tarifaNoche    
         if((fi.hour == 5 and fi.minute + minutos > 59) or
             (fi.hour == 17 and fi.minute + minutos > 59)):
             monto += self.tarifaDia if self.tarifaDia > self.tarifaNoche else self.tarifaNoche
